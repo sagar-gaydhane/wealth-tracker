@@ -71,14 +71,14 @@ class MainActivity : AppCompatActivity() {
         binding.navTransactions.background = null
         binding.navAdd.background = null
 
-//        binding.imgDashboard.setColorFilter(getColor(R.color.white))
-//        binding.txtDashboard.setTextColor(getColor(R.color.white))
-//
-//        binding.imgTransactions.setColorFilter(getColor(R.color.bottom_nav_inactive))
-//        binding.txtTransactions.setTextColor(getColor(R.color.bottom_nav_inactive))
-//
-//        binding.imgAdd.setColorFilter(getColor(R.color.bottom_nav_inactive))
-//        binding.txtAdd.setTextColor(getColor(R.color.bottom_nav_inactive))
+        binding.imgDashboard.setColorFilter(getColor(R.color.white))
+        binding.txtDashboard.setTextColor(getColor(R.color.white))
+
+        binding.imgTransactions.setColorFilter(getColor(R.color.bottom_nav_inactive))
+        binding.txtTransactions.setTextColor(getColor(R.color.bottom_nav_inactive))
+
+        binding.imgAdd.setColorFilter(getColor(R.color.bottom_nav_inactive))
+        binding.txtAdd.setTextColor(getColor(R.color.bottom_nav_inactive))
 
     }
 
@@ -87,6 +87,18 @@ class MainActivity : AppCompatActivity() {
         binding.navTransactions.setBackgroundResource(R.drawable.bg_bottom_nav_active_pill)
         binding.navDashboard.background = null
         binding.navAdd.background = null
+
+        binding.imgDashboard.setColorFilter(getColor(R.color.bottom_nav_inactive))
+        binding.txtDashboard.setTextColor(getColor(R.color.bottom_nav_inactive))
+
+        binding.imgTransactions.setColorFilter(getColor(R.color.white))
+        binding.txtTransactions.setTextColor(getColor(R.color.white))
+
+        binding.imgAdd.setColorFilter(getColor(R.color.bottom_nav_inactive))
+        binding.txtAdd.setTextColor(getColor(R.color.bottom_nav_inactive))
+
+
+
     }
 
     private fun selectAdd() {
@@ -94,6 +106,16 @@ class MainActivity : AppCompatActivity() {
         binding.navAdd.setBackgroundResource(R.drawable.bg_bottom_nav_active_pill)
         binding.navDashboard.background = null
         binding.navTransactions.background = null
+
+        binding.imgDashboard.setColorFilter(getColor(R.color.bottom_nav_inactive))
+        binding.txtDashboard.setTextColor(getColor(R.color.bottom_nav_inactive))
+
+        binding.imgTransactions.setColorFilter(getColor(R.color.bottom_nav_inactive))
+        binding.txtTransactions.setTextColor(getColor(R.color.bottom_nav_inactive))
+
+        binding.imgAdd.setColorFilter(getColor(R.color.white))
+        binding.txtAdd.setTextColor(getColor(R.color.white))
+
     }
 
     private fun navigateTo(destinationId: Int) {
