@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+
+    <color name="background_light">#F5F6FA</color>
+    <color name="white">#FFFFFF</color>
+    <color name="primary_blue">#2F5CFF</color> #
+    <color name="primary_blue_dark">#1E3FCC</color>
+    <color name="balance_pill_bg">#3D6BFF</color>
+    <color name="text_primary">#1A1D29</color>
+    <color name="text_secondary">#8A8D9F</color>
+    <color name="text_on_blue">#FFFFFF</color>
+    <color name="text_on_blue_faded">#C7D3FF</color>
+    <color name="green_positive">#22B07D</color>
+    <color name="red_negative">#E8483A</color>
+    <color name="chart_bar_default">#E7EAF5</color>
+    <color name="chart_bar_active">#2F5CFF</color>
+    <color name="icon_bg_green">#DFF5E9</color>
+    <color name="icon_bg_blue">#E1E9FF</color>
+    <color name="icon_bg_pink">#FBE3E6</color>
+    <color name="savings_card_bg">#EDEFF5</color>
+    <color name="budget_card_bg">#E8483A</color>
+    <color name="bottom_nav_bg">#FFFFFF</color>
+    <color name="bottom_nav_active_pill">#2F5CFF</color>
+    <color name="bottom_nav_inactive">#9CA0B5</color>
+
+</resources>

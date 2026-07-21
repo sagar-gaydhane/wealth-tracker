@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp">
+
+    <!-- Circular icon background, swap src/tint per category -->
+    <FrameLayout
+        android:id="@+id/iconContainer"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:background="@drawable/bg_icon_circle_green"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageView
+            android:id="@+id/ivCategoryIcon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_cart"
+            app:tint="@color/green_positive"
+            android:contentDescription="@string/transaction_category_icon" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tvMerchantName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Grocery Market"
+        android:textColor="@color/text_primary"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:maxLines="1"
+        android:ellipsize="end"
+        app:layout_constraintStart_toEndOf="@id/iconContainer"
+        app:layout_constraintEnd_toStartOf="@id/tvAmount"
+        app:layout_constraintTop_toTopOf="@id/iconContainer"
+        app:layout_constraintBottom_toTopOf="@id/tvDateTime"
+        app:layout_constraintVertical_chainStyle="packed"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="8dp" />
+
+    <TextView
+        android:id="@+id/tvDateTime"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Today, 2:45 PM"
+        android:textColor="@color/text_secondary"
+        android:textSize="12sp"
+        android:maxLines="1"
+        app:layout_constraintStart_toStartOf="@id/tvMerchantName"
+        app:layout_constraintEnd_toEndOf="@id/tvMerchantName"
+        app:layout_constraintTop_toBottomOf="@id/tvMerchantName"
+        app:layout_constraintBottom_toBottomOf="@id/iconContainer"
+        android:layout_marginTop="2dp" />
+
+    <TextView
+        android:id="@+id/tvAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-$64.20"
+        android:textColor="@color/text_primary"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvMerchantName"
+        app:layout_constraintBottom_toTopOf="@id/tvCategoryTag"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/tvCategoryTag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Personal"
+        android:textColor="@color/text_secondary"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@id/tvAmount"
+        app:layout_constraintTop_toBottomOf="@id/tvAmount"
+        app:layout_constraintBottom_toBottomOf="@id/tvDateTime"
+        android:layout_marginTop="2dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
