@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/bg_white_card"
+    android:padding="14dp">
+
+    <!-- Category icon, rounded-square tinted background. Swap background/src/tint per category -->
+    <FrameLayout
+        android:id="@+id/iconContainer"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:background="@drawable/bg_icon_square_blue"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageView
+            android:id="@+id/ivCategoryIcon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_laptop"
+            app:tint="@color/primary_blue"
+            android:contentDescription="@string/transaction_category_icon" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tvMerchantName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Apple Subscription"
+        android:textColor="@color/text_primary"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:maxLines="1"
+        android:ellipsize="end"
+        app:layout_constraintStart_toEndOf="@id/iconContainer"
+        app:layout_constraintEnd_toStartOf="@id/tvAmount"
+        app:layout_constraintTop_toTopOf="@id/iconContainer"
+        app:layout_constraintBottom_toTopOf="@id/tvCategoryLabel"
+        app:layout_constraintVertical_chainStyle="packed"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="8dp" />
+
+    <TextView
+        android:id="@+id/tvCategoryLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Cloud &amp; Music"
+        android:textColor="@color/text_secondary"
+        android:textSize="13sp"
+        android:maxLines="1"
+        android:ellipsize="end"
+        app:layout_constraintStart_toStartOf="@id/tvMerchantName"
+        app:layout_constraintEnd_toEndOf="@id/tvMerchantName"
+        app:layout_constraintTop_toBottomOf="@id/tvMerchantName"
+        app:layout_constraintBottom_toBottomOf="@id/iconContainer"
+        android:layout_marginTop="2dp" />
+
+    <TextView
+        android:id="@+id/tvAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-$14.99"
+        android:textColor="@color/red_negative"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/iconContainer"
+        app:layout_constraintBottom_toBottomOf="@id/iconContainer" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

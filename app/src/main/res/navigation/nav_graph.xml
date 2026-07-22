@@ -17,7 +17,7 @@
 
         <fragment
             android:id="@+id/addExpenseFragment"
-            android:name="com.adhyantacore.expensetracker.AddExpensFragment"/>
+            android:name="com.adhyantacore.expensetracker.AddExpenseFragment"/>
 
 
 

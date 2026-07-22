@@ -24,4 +24,14 @@
     <color name="bottom_nav_active_pill">#2F5CFF</color>
     <color name="bottom_nav_inactive">#9CA0B5</color>
 
+    <!--  Added: Transactions list + Add Transaction screens  -->
+    <color name="icon_bg_orange">#FBECDD</color>
+    <color name="orange_icon">#D98324</color>
+    <color name="chip_bg_selected">#2F5CFF</color>
+    <color name="chip_bg_unselected">#FFFFFF</color>
+    <color name="chip_text_selected">#FFFFFF</color>
+    <color name="chip_text_unselected">#5B5F73</color>
+    <color name="input_border">#E3E6F0</color>
+    <color name="text_placeholder">#B7BAC9</color>
+    <color name="dashed_upload_border">#C6CADC</color>
 </resources>
