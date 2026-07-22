@@ -9,15 +9,15 @@
 
         <fragment
             android:id="@+id/dashboardFragment"
-            android:name="com.adhyantacore.expensetracker.DashboardFragment"/>
+            android:name="com.adhyantacore.expensetracker.presentation.dashboard.DashboardFragment"/>
 
         <fragment
             android:id="@+id/transactionFragment"
-            android:name="com.adhyantacore.expensetracker.TransactionsFragment"/>
+            android:name="com.adhyantacore.expensetracker.presentation.transactions.TransactionsFragment"/>
 
         <fragment
             android:id="@+id/addExpenseFragment"
-            android:name="com.adhyantacore.expensetracker.AddExpenseFragment"/>
+            android:name="com.adhyantacore.expensetracker.presentation.addexpense.AddExpenseFragment"/>
 
 
 

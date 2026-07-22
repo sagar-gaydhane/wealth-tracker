@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".AddExpenseFragment">
+    tools:context=".presentation.addexpense.AddExpenseFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/background_light">
@@ -68,35 +69,56 @@
                     android:textColor="@color/text_secondary"
                     android:textSize="12sp" />
 
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
                     android:gravity="center"
                     android:orientation="horizontal">
+
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="$"
+
                         android:textColor="@color/primary_blue"
                         android:textSize="30sp"
                         android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/etAmount"
-                        android:layout_width="wrap_content"
+                        android:layout_width="120dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:background="@null"
                         android:gravity="center"
-                        android:hint="@string/amount_placeholder"
                         android:inputType="numberDecimal"
-                        android:minWidth="120dp"
-                        android:textColor="@color/text_primary"
-                        android:textColorHint="@color/text_placeholder"
+                        android:text="0"
                         android:textSize="30sp"
                         android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <ImageButton
+                            android:id="@+id/btnIncrease"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:background="@android:color/transparent"
+                            android:src="@drawable/ic_arrow_up" />
+
+                        <ImageButton
+                            android:id="@+id/btnDecrease"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:background="@android:color/transparent"
+                            android:src="@drawable/ic_arrow_down" />
+
+                    </LinearLayout>
+
                 </LinearLayout>
 
                 <View
@@ -220,12 +242,14 @@
                         android:paddingEnd="16dp">
 
                         <ImageView
+                            android:id="@+id/pillMainWalletIcon"
                             android:layout_width="18dp"
                             android:layout_height="18dp"
                             android:src="@drawable/ic_wallet"
                             app:tint="@color/white" />
 
                         <TextView
+                            android:id="@+id/tvMainWallet"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
@@ -249,12 +273,14 @@
                         android:paddingEnd="16dp">
 
                         <ImageView
+                            android:id="@+id/pillCreditCardIcon"
                             android:layout_width="18dp"
                             android:layout_height="18dp"
                             android:src="@drawable/ic_credit_card"
                             app:tint="@color/text_secondary" />
 
                         <TextView
+                            android:id="@+id/tvCreditCard"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
@@ -277,12 +303,14 @@
                         android:paddingEnd="16dp">
 
                         <ImageView
+                            android:id="@+id/pillSavingIcon"
                             android:layout_width="18dp"
-                            android:layout_height="18dp"
+                            android:layout_height="12dp"
                             android:src="@drawable/ic_piggy_bank"
                             app:tint="@color/text_secondary" />
 
                         <TextView
+                            android:id="@+id/tvSaving"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
@@ -327,12 +355,14 @@
                     android:orientation="vertical">
 
                     <ImageView
+                        android:id="@+id/ivReceiptIcon"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:src="@drawable/ic_camera_plus"
                         app:tint="@color/text_secondary" />
 
                     <TextView
+                        android:id="@+id/tvReceiptLabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
@@ -340,8 +370,61 @@
                         android:textColor="@color/text_secondary"
                         android:textSize="13sp" />
                 </LinearLayout>
+
+                <!--  ===== Receipt Preview (shown after selection) =====  -->
+                <LinearLayout
+                    android:id="@+id/layoutReceiptPreview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/bg_input_field"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="10dp"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:id="@+id/ivReceiptThumb"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_dashboard" />
+
+                    <TextView
+                        android:id="@+id/tvReceiptFileName"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="1"
+                        android:ellipsize="middle"
+                        android:singleLine="true"
+                        android:text="receipt.jpg"
+                        android:textColor="@color/text_primary"
+                        android:textSize="13sp" />
+
+                    <ImageButton
+                        android:id="@+id/btnRemoveReceipt"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="@string/remove"
+                        android:src="@drawable/ic_back_arrow"
+                        app:tint="@color/text_secondary" />
+                </LinearLayout>
+
+
+
+
             </LinearLayout>
+
+
+
+
         </androidx.core.widget.NestedScrollView>
+
+
+
+
         <!--  ===== Save button =====  -->
         <LinearLayout
             android:id="@+id/btnSave"

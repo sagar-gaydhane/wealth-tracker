@@ -44,7 +44,7 @@
     <string name="notes_hint">What was this for?</string>
     <string name="add_receipt_image">Add Receipt Image</string>
     <string name="save_transaction">Save Transaction</string>
-
+    <string name="remove">Remove</string>
 
 
 </resources>
