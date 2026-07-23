@@ -9,4 +9,7 @@ interface ExpenseRepository {
     suspend fun addExpense(expense: Expense): Long
     suspend fun deleteExpense(expense: Expense)
     fun getAllCategories(): Flow<List<String>>
+    fun getBudget(): Flow<Double?>
+    suspend fun setBudget(amount: Double)
+    suspend fun deleteBudget()
 }

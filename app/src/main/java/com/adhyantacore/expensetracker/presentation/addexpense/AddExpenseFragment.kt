@@ -66,7 +66,7 @@ class AddExpenseFragment : Fragment() {
     private var receiptType: ReceiptType? = null
     private var cameraPhotoUri: Uri? = null
 
-
+    private var selectedDateMillis: Long = System.currentTimeMillis()
 
     // ---- Activity result launchers ----
 
@@ -92,13 +92,35 @@ class AddExpenseFragment : Fragment() {
             }
         }
 
+    private fun copyUriToInternalStorage(uri: Uri, isPdf: Boolean = false): Uri? {
+        return try {
+            val inputStream = requireContext().contentResolver.openInputStream(uri) ?: return null
+            val dir = java.io.File(requireContext().cacheDir, "receipts").apply { mkdirs() }
+            val ext = if (isPdf) ".pdf" else ".jpg"
+            val fileName = "receipt_${System.currentTimeMillis()}$ext"
+            val file = java.io.File(dir, fileName)
+            val outputStream = java.io.FileOutputStream(file)
+            inputStream.copyTo(outputStream)
+            inputStream.close()
+            outputStream.close()
+            Uri.fromFile(file)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
+        }
+    }
+
     // Gallery image picker (Android 13+ Photo Picker, falls back automatically on older versions)
     private val pickImageLauncher = registerForActivityResult(
         ActivityResultContracts.PickVisualMedia()
     ) { uri ->
         if (uri != null) {
-            // Take persistable permission isn't needed for PickVisualMedia (scoped access is automatic)
-            setReceipt(uri, ReceiptType.IMAGE)
+            val localUri = copyUriToInternalStorage(uri, false)
+            if (localUri != null) {
+                setReceipt(localUri, ReceiptType.IMAGE)
+            } else {
+                Toast.makeText(requireContext(), "Failed to process image", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
@@ -107,16 +129,12 @@ class AddExpenseFragment : Fragment() {
         ActivityResultContracts.GetContent()
     ) { uri ->
         if (uri != null) {
-            try {
-                requireContext().contentResolver.takePersistableUriPermission(
-                    uri,
-                    Intent.FLAG_GRANT_READ_URI_PERMISSION
-                )
-            } catch (e: SecurityException) {
-                // Some providers don't support persistable permissions; safe to ignore
-
+            val localUri = copyUriToInternalStorage(uri, true)
+            if (localUri != null) {
+                setReceipt(localUri, ReceiptType.PDF)
+            } else {
+                Toast.makeText(requireContext(), "Failed to process PDF", Toast.LENGTH_SHORT).show()
             }
-            setReceipt(uri, ReceiptType.PDF)
         }
     }
 
@@ -125,7 +143,7 @@ class AddExpenseFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentAddExpensBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -184,11 +202,8 @@ class AddExpenseFragment : Fragment() {
 
             val amountText = binding.etAmount.text.toString()
             val category = selectedCategory
-            val date = binding.tvDateValue.text.toString()
             val account = selectedAccount
             val notes = binding.etNotes.text.toString()
-            val receipt = receiptUri
-            val receiptKind = receiptType
 
             if (category.isBlank()) {
                 Toast.makeText(requireContext(), "Please select a category", Toast.LENGTH_SHORT)
@@ -196,13 +211,14 @@ class AddExpenseFragment : Fragment() {
                 return@setOnClickListener
             }
 
-            // TODO: Save amountText, category, date, account, notes, receipt (Uri), receiptKind
 
+            val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+            val dateString = sdf.format(Date(selectedDateMillis))
 
             viewModel.saveExpense(
                 amountText = amountText,
                 category = category,
-                date = date,
+                date = dateString,
                 account = account,
                 notes = notes,
                 receiptUri = receiptUri?.toString(),
@@ -264,6 +280,8 @@ class AddExpenseFragment : Fragment() {
         picker.show(parentFragmentManager, "DATE_PICKER")
 
         picker.addOnPositiveButtonClickListener { selection ->
+
+            selectedDateMillis = selection
 
             val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
             sdf.timeZone = TimeZone.getTimeZone("UTC")
@@ -406,7 +424,13 @@ class AddExpenseFragment : Fragment() {
         binding.tvReceiptFileName.text = getDisplayName(uri, type)
 
         when (type) {
-            ReceiptType.IMAGE -> binding.ivReceiptThumb.setImageURI(uri)
+            ReceiptType.IMAGE -> {
+                com.squareup.picasso.Picasso.get()
+                    .load(uri)
+                    .fit()
+                    .centerCrop()
+                    .into(binding.ivReceiptThumb)
+            }
             ReceiptType.PDF -> binding.ivReceiptThumb.setImageResource(R.drawable.ic_dashboard) // swap for a PDF icon
         }
 
@@ -425,11 +449,15 @@ class AddExpenseFragment : Fragment() {
             return uri.lastPathSegment ?: "receipt.jpg"
         }
         var name: String? = null
-        requireContext().contentResolver.query(uri, null, null, null, null)?.use { cursor ->
-            val nameIndex = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)
-            if (cursor.moveToFirst() && nameIndex >= 0) {
-                name = cursor.getString(nameIndex)
+        try {
+            requireContext().contentResolver.query(uri, null, null, null, null)?.use { cursor ->
+                val nameIndex = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)
+                if (cursor.moveToFirst() && nameIndex >= 0) {
+                    name = cursor.getString(nameIndex)
+                }
             }
+        } catch (e: Exception) {
+            // Ignore for file:// URIs
         }
         return name ?: uri.lastPathSegment ?: "receipt"
     }

@@ -12,7 +12,7 @@ data class ExpenseEntity(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
     val amount: Double,
     val category: String,
-    val date: String,
+    val date: Long,
     val account: String,
     val notes: String?,
     val receiptUri: String?,

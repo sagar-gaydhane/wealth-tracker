@@ -19,6 +19,7 @@
             android:layout_weight="1"
             android:gravity="bottom|center_horizontal">
             <View
+                android:id="@+id/barMon"
                 android:layout_width="18dp"
                 android:layout_height="45dp"
                 android:background="@drawable/bg_chart_bar_default" />
@@ -31,6 +32,7 @@
             android:layout_weight="1"
             android:gravity="bottom|center_horizontal">
             <View
+                android:id="@+id/barTue"
                 android:layout_width="18dp"
                 android:layout_height="60dp"
                 android:background="@drawable/bg_chart_bar_default" />
@@ -43,6 +45,7 @@
             android:layout_weight="1"
             android:gravity="bottom|center_horizontal">
             <View
+                android:id="@+id/barWed"
                 android:layout_width="18dp"
                 android:layout_height="80dp"
                 android:background="@drawable/bg_chart_bar_active" />
@@ -55,6 +58,7 @@
             android:layout_weight="1"
             android:gravity="bottom|center_horizontal">
             <View
+                android:id="@+id/barThu"
                 android:layout_width="18dp"
                 android:layout_height="35dp"
                 android:background="@drawable/bg_chart_bar_default" />
@@ -67,6 +71,7 @@
             android:layout_weight="1"
             android:gravity="bottom|center_horizontal">
             <View
+                android:id="@+id/barFri"
                 android:layout_width="18dp"
                 android:layout_height="55dp"
                 android:background="@drawable/bg_chart_bar_default" />
@@ -79,6 +84,7 @@
             android:layout_weight="1"
             android:gravity="bottom|center_horizontal">
             <View
+                android:id="@+id/barSat"
                 android:layout_width="18dp"
                 android:layout_height="40dp"
                 android:background="@drawable/bg_chart_bar_default" />
@@ -91,6 +97,7 @@
             android:layout_weight="1"
             android:gravity="bottom|center_horizontal">
             <View
+                android:id="@+id/barSun"
                 android:layout_width="18dp"
                 android:layout_height="25dp"
                 android:background="@drawable/bg_chart_bar_default" />

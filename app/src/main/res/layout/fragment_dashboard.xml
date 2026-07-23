@@ -83,6 +83,7 @@
                     android:textSize="12sp" />
 
                 <TextView
+                    android:id="@+id/tvTotalBalance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
@@ -101,25 +102,23 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="6dp"
                         android:layout_weight="1"
-                        android:background="@drawable/bg_balance_pill"
+                        android:layout_marginEnd="4dp"
                         android:orientation="vertical"
-                        android:paddingHorizontal="14dp"
+                        android:background="@drawable/bg_balance_pill"
+                        android:paddingHorizontal="12dp"
                         android:paddingVertical="10dp">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
-
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
                             <ImageView
                                 android:layout_width="12dp"
                                 android:layout_height="12dp"
                                 android:src="@drawable/ic_arrow_down"
                                 app:tint="@color/text_on_blue" />
-
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -130,12 +129,13 @@
                         </LinearLayout>
 
                         <TextView
+                            android:id="@+id/tvIncome"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
                             android:text="$5,240"
                             android:textColor="@color/text_on_blue"
-                            android:textSize="16sp"
+                            android:textSize="15sp"
                             android:textStyle="bold" />
                     </LinearLayout>
 
@@ -143,25 +143,24 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="6dp"
                         android:layout_weight="1"
-                        android:background="@drawable/bg_balance_pill"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="4dp"
                         android:orientation="vertical"
-                        android:paddingHorizontal="14dp"
+                        android:background="@drawable/bg_balance_pill"
+                        android:paddingHorizontal="12dp"
                         android:paddingVertical="10dp">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
-
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
                             <ImageView
                                 android:layout_width="12dp"
                                 android:layout_height="12dp"
                                 android:src="@drawable/ic_arrow_up"
                                 app:tint="@color/text_on_blue" />
-
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -172,12 +171,54 @@
                         </LinearLayout>
 
                         <TextView
+                            android:id="@+id/tvSpend"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
                             android:text="$3,120"
                             android:textColor="@color/text_on_blue"
-                            android:textSize="16sp"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <!-- Budget pill -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="4dp"
+                        android:orientation="vertical"
+                        android:background="@drawable/bg_balance_pill"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="10dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+                            <ImageView
+                                android:layout_width="12dp"
+                                android:layout_height="12dp"
+                                android:src="@drawable/ic_piggy_bank"
+                                app:tint="@color/text_on_blue" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:text="Budget"
+                                android:textColor="@color/text_on_blue_faded"
+                                android:textSize="11sp" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/tvBudget"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="$1,500"
+                            android:textColor="@color/text_on_blue"
+                            android:textSize="15sp"
                             android:textStyle="bold" />
                     </LinearLayout>
 
@@ -214,6 +255,7 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/tvAvgSpend"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
@@ -223,6 +265,7 @@
                     </LinearLayout>
 
                     <TextView
+                        android:id="@+id/tvPercentChange"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
@@ -234,6 +277,7 @@
                 </LinearLayout>
 
                 <include
+                    android:id="@+id/weeklyChart"
                     layout="@layout/include_weekly_chart"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -273,32 +317,16 @@
             <!-- ===== Transactions list ===== -->
             <!-- Use a RecyclerView with item_transaction.xml + a divider decoration
                  in real usage. Shown here as static rows for the visual mock. -->
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvRecentTransactions"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:background="@drawable/bg_white_card"
-                android:orientation="vertical"
                 android:paddingHorizontal="16dp"
-                android:paddingVertical="6dp">
-
-                <include layout="@layout/item_transaction" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#EEF0F5" />
-
-                <include layout="@layout/item_transaction" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#EEF0F5" />
-
-                <include layout="@layout/item_transaction" />
-
-            </LinearLayout>
+                android:paddingVertical="6dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_transaction" />
 
             <!-- ===== Savings + Budget Left row ===== -->
             <LinearLayout
@@ -326,6 +354,7 @@
                         android:textSize="11sp" />
 
                     <TextView
+                        android:id="@+id/tvSavings"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
@@ -338,13 +367,16 @@
 
                 <!-- Budget left -->
                 <LinearLayout
+                    android:id="@+id/cardBudget"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginStart="8dp"
                     android:layout_weight="1"
                     android:background="@drawable/bg_budget_card"
                     android:orientation="vertical"
-                    android:padding="16dp">
+                    android:padding="16dp"
+                    android:clickable="true"
+                    android:focusable="true">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -355,6 +387,7 @@
                         android:textSize="11sp" />
 
                     <TextView
+                        android:id="@+id/tvBudgetLeft"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
@@ -364,17 +397,22 @@
                         android:textStyle="bold" />
 
                     <!-- Progress bar -->
-                    <FrameLayout
+                    <LinearLayout
+                        android:id="@+id/layoutBudgetProgress"
                         android:layout_width="match_parent"
                         android:layout_height="6dp"
                         android:layout_marginTop="10dp"
-                        android:background="@drawable/bg_progress_track">
+                        android:background="@drawable/bg_progress_track"
+                        android:orientation="horizontal"
+                        android:weightSum="100">
 
                         <View
-                            android:layout_width="60dp"
+                            android:id="@+id/vBudgetProgress"
+                            android:layout_width="0dp"
                             android:layout_height="match_parent"
+                            android:layout_weight="60"
                             android:background="@drawable/bg_progress_fill" />
-                    </FrameLayout>
+                    </LinearLayout>
 
                 </LinearLayout>
 

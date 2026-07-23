@@ -9,7 +9,10 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.Locale
 import javax.inject.Inject
+
 @HiltViewModel
 class AddExpenseViewModel @Inject constructor(
     private val addExpenseUseCase: AddExpenseUseCase
@@ -29,11 +32,17 @@ class AddExpenseViewModel @Inject constructor(
     ) {
         viewModelScope.launch {
             val amount = amountText.toDoubleOrNull() ?: 0.0
+            val dateMillis = try {
+                val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                sdf.parse(date)?.time ?: System.currentTimeMillis()
+            } catch (_: Exception) {
+                System.currentTimeMillis()
+            }
             val result = addExpenseUseCase(
                 Expense(
                     amount = amount,
                     category = category,
-                    date = date,
+                    date = dateMillis,
                     account = account,
                     notes = notes.ifBlank { null },
                     receiptUri = receiptUri,

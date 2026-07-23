@@ -26,8 +26,19 @@
     <string name="filter_all">All</string>
     <string name="filter_food">Food</string>
     <string name="filter_rent">Rent</string>
-    <string name="filter_tech">Tech</string>
     <string name="filter_travel">Travel</string>
+    <string name="filter_transport">Transport</string>
+    <string name="filter_shopping">Shopping</string>
+    <string name="filter_entertainment">Entertainment</string>
+    <string name="filter_bills">Bills</string>
+    <string name="filter_health">Health</string>
+    <string name="filter_education">Education</string>
+    <string name="filter_business">Business</string>
+    <string name="filter_gift">Gift</string>
+    <string name="filter_mobile_recharge">Mobile Recharge</string>
+    <string name="filter_electronics">Electronics</string>
+    <string name="filter_pets">Pets</string>
+    <string name="filter_others">Others</string>
     <!--  Add Transaction screen  -->
     <string name="add_transaction_title">Add Transaction</string>
     <string name="back">Back</string>
@@ -45,6 +56,36 @@
     <string name="add_receipt_image">Add Receipt Image</string>
     <string name="save_transaction">Save Transaction</string>
     <string name="remove">Remove</string>
+    <string name="delete">Delete</string>
+    <string name="no_transactions">No Transactions</string>
 
 
+    <!--  AddExpenseFragment validation/feedback  -->
+    <string name="error_invalid_amount">Enter an amount greater than 0</string>
+    <string name="error_select_category">Please select a category</string>
+    <string name="saved_transaction">Transaction saved</string>
+    <!--  Transaction details screen  -->
+    <string name="details_title">Details</string>
+    <string name="share">Share</string>
+
+    <string name="field_date">Date</string>
+    <string name="field_paid_with">Paid with</string>
+    <string name="field_status">Status</string>
+    <string name="status_completed">Completed</string>
+    <string name="notes_label">NOTES</string>
+    <string name="receipt_label">RECEIPT</string>
+    <string name="view_receipt">View receipt</string>
+    <string name="edit_transaction">Edit Transaction</string>
+    <string name="delete_transaction">Delete Transaction</string>
+    <!--  Edit Transaction screen  -->
+    <string name="edit_transaction_title">Edit Transaction</string>
+
+    <string name="transaction_amount">TRANSACTION AMOUNT</string>
+    <string name="field_category">CATEGORY</string>
+    <string name="field_account">ACCOUNT</string>
+    <string name="field_date_caps">DATE</string>
+    <string name="description_notes">DESCRIPTION / NOTES</string>
+    <string name="receipt_attached_count">1 Receipt attached</string>
+    <string name="view">VIEW</string>
+    <string name="update_transaction">Update Transaction</string>
 </resources>

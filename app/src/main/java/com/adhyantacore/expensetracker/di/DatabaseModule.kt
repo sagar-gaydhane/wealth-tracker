@@ -3,6 +3,7 @@ package com.adhyantacore.expensetracker.di
 import android.content.Context
 import androidx.room.Room
 import com.adhyantacore.expensetracker.data.local.dao.ExpenseDao
+import com.adhyantacore.expensetracker.data.local.dao.BudgetDao
 import com.adhyantacore.expensetracker.data.local.database.ExpenseDatabase
 import dagger.Module
 import dagger.Provides
@@ -18,9 +19,15 @@ object DatabaseModule {
     @Provides
     @Singleton
     fun provideExpenseDatabase(@ApplicationContext context: Context): ExpenseDatabase =
-        Room.databaseBuilder(context, ExpenseDatabase::class.java, "expense_db").build()
+        Room.databaseBuilder(context, ExpenseDatabase::class.java, "expense_db")
+            .fallbackToDestructiveMigration(dropAllTables = true)
+            .build()
 
     @Provides
     fun provideExpenseDao(database: ExpenseDatabase): ExpenseDao =
         database.expenseDao()
+
+    @Provides
+    fun provideBudgetDao(database: ExpenseDatabase): BudgetDao =
+        database.budgetDao()
 }
