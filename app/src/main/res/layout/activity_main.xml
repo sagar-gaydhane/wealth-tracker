@@ -35,11 +35,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
             android:paddingHorizontal="10dp">
 
             <!-- Dashboard - active -->
@@ -47,12 +45,16 @@
                 android:id="@+id/navDashboard"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:orientation="horizontal"
                 android:gravity="center"
                 android:background="@drawable/bg_bottom_nav_active_pill"
                 android:paddingVertical="10dp"
-                android:paddingHorizontal="8dp">
+                android:paddingHorizontal="8dp"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/navTransactions"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
 
                 <ImageView
                     android:id="@+id/imgDashboard"
@@ -72,17 +74,19 @@
                     android:textStyle="bold" />
             </LinearLayout>
 
-
-
             <!-- Transactions -->
             <LinearLayout
                 android:id="@+id/navTransactions"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:orientation="vertical"
                 android:gravity="center"
-                android:background="?attr/selectableItemBackgroundBorderless">
+                android:background="?attr/selectableItemBackgroundBorderless"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toEndOf="@id/navDashboard"
+                app:layout_constraintEnd_toStartOf="@id/navAdd"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
 
                 <ImageView
                     android:id="@+id/imgTransactions"
@@ -106,10 +110,14 @@
                 android:id="@+id/navAdd"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:orientation="vertical"
                 android:gravity="center"
-                android:background="?attr/selectableItemBackgroundBorderless">
+                android:background="?attr/selectableItemBackgroundBorderless"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toEndOf="@id/navTransactions"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
 
                 <ImageView
                     android:id="@+id/imgAdd"
@@ -128,7 +136,7 @@
                     android:textSize="11sp" />
             </LinearLayout>
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
 
